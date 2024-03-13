@@ -1,8 +1,8 @@
 package com.michipan.demo.controller;
 
-import com.michipan.demo.domain.Grano;
+import com.michipan.demo.domain.Personal;
 import com.michipan.demo.service.FirebaseStorageService;
-import com.michipan.demo.service.GranoService;
+import com.michipan.demo.service.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
@@ -20,55 +20,55 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 
-public class GranoController {
+public class PersonalController {
 
     @Autowired
-    private GranoService servicio;
+    private PersonalService servicio;
 
-    @GetMapping({"/granos"})
-    public String listarGranos(Model modelo) {
-        modelo.addAttribute("granos", servicio.getAllGranos());
-        return "granos";
+    @GetMapping({"/personal"})
+    public String listarPersonals(Model modelo) {
+        modelo.addAttribute("personal", servicio.getAllPersonals());
+        return "personal";
 
     }
 
     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
-    @PostMapping("/guardarGrano")
-    public String guardar(Grano grano, @RequestParam("imagenFile") MultipartFile imagenFile) {
+    @PostMapping("/guardarPersonal")
+    public String guardar(Personal personal, @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) { // Se debe subir una imagen
-            servicio.saveGrano(grano);
+            servicio.savePersonal(personal);
 
-            String ruta = firebaseStorageService.cargaImagen(imagenFile, "grano", grano.getId());
-            grano.setImagen(ruta);
+            String ruta = firebaseStorageService.cargaImagen(imagenFile, "personal", personal.getId());
+            personal.setImagen(ruta);
 
             // Imprime el valor de la propiedad 'imagen' antes de guardar en la base de datos
-            System.out.println("Valor de 'imagen' antes de guardar: " + grano.getImagen());
+            System.out.println("Valor de 'imagen' antes de guardar: " + personal.getImagen());
 
             // Guarda la entidad en la base de datos
-            servicio.saveGrano(grano);
+            servicio.savePersonal(personal);
         }
 
-        return "redirect:/granos";
+        return "redirect:/personal";
     }
 
 // Se deberia usar DeleteMapping una solucion mas Restful pero hay algun tipo de seguridad por defecto pienso que no permite delete
 //Se podra tal vez resolver mas adelante con el tema de roles y seguridad
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/eliminarPersonal/{id}")
     public String elimina(@PathVariable Long id) {
-        servicio.deleteGrano(id);
-        return "redirect:/granos";
+        servicio.deletePersonal(id);
+        return "redirect:/personal";
     }
 
 }
 
 /*
     @GetMapping({"/list","/"})
-    public ModelAndView listGranos() {
-        ModelAndView modelAndView = new ModelAndView("granos"); // Nombre del archivo HTML
-        List<Grano> granos = granoService.getAllGranos();
-        modelAndView.addObject("granos", granos);
+    public ModelAndView listPersonals() {
+        ModelAndView modelAndView = new ModelAndView("personals"); // Nombre del archivo HTML
+        List<Personal> personals = personalService.getAllPersonals();
+        modelAndView.addObject("personals", personals);
         return modelAndView;
     }
 }
