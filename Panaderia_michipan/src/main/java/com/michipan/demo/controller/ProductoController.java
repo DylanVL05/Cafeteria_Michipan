@@ -57,7 +57,7 @@ public class ProductoController {
     public String guardar(@ModelAttribute("producto") Producto producto,
                           @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
-            String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", null); // No hay ID aún
+            String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto()); // No hay ID aún
             producto.setRutaImagen(ruta);
         }
         productoService.saveProducto(producto);
