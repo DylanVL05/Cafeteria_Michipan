@@ -19,12 +19,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 </head>
 
-
-
-
-
-
-
                 <body>
 
 
@@ -82,6 +76,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div> 
                                     <form th:action="@{/guardarProducto}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+
+                                        <div class="mb-3">
+                                            <label for="categoria">Categoria</label>
+                                            <select class="form-select" name="categoria.idCategoria">                       
+                                                <option th:each="c:${categorias}" 
+                                                        th:value="${c.idCategoria}"></option>
+
+                                            </select>
+                                        </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label for="nombre">Nombre</label>
