@@ -60,38 +60,39 @@
 
         <section>
 
-            <section>
+
+            <section th:fragment="listadoProductos">
                 <div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active"href="/categoria">Todos</a>
+                            <a class="nav-link active"href="/producto">Lista Productos</a>
                         </li>
-                        <li class="nav-item" th:each="c:${categorias}">
-                            <a class="nav-link" th:href="@{categoria}+${c.idCategoria}"></a>
+                        <li class="nav-item" href="categorias">
+                            <a class="nav-link" href="/categoria"></a>
                         </li>
                     </ul>
 
                 </div>
-                <div class="row row-cols-2 p-3"> 
+                <div class="row row-cols-4 p-4"> 
 
                     <div class="card p-2" th:each="p:${productos}">
                         <figure>
-                            <img th:src="${p.rutaimagen}" 
+                            <img href:src="${p.rutaImagen}" 
                                  height="200"             
                                  alt="alt"
                                  />
                             <figcaption>
 
-
+                              
 
                             </figcaption>
                         </figure>
 
                         <div class="card-header">
-                            <h4>descripcion</h4>
+                            <h4></h4>
                         </div>
                         <div class="card-body">
-                            <p>detalle</p>
+                            <p></p>
                         </div>
 
 
@@ -106,28 +107,9 @@
 
 
 
+
+
         </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <footer class="footer text-faded text-center py-5">
             <div class="container"><p class="m-0 small">Copyright &copy; Michipan2024</p></div>

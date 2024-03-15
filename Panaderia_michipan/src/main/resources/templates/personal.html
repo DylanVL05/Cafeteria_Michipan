@@ -83,25 +83,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div class="modal-dialog modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header bg-info text-white">
-                                        <h5 class="modal-title">[[#{personal.agregar}]]</h5>
+                                        <h5 class="modal-title">Agregar Personal</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div> 
                                     <form th:action="@{/guardarPersonal}" th:object="${personal}" method="POST" class="was-validated" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="nombre">[[#{personal.nombre}]]</label>
+                                                <label for="nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="nombre" name="nombre" required="true"/>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="rol">[[#{personal.rol}]]</label>
+                                                <label for="rol">Roll</label>
                                                 <input type="text" class="form-control" id="rol" name="rol" required="true"/>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="frase">[[#{personal.frase}]]</label>
+                                                <label for="frase">Frase</label>
                                                 <input type="text" class="form-control" id="frase" name="frase" required="true"/>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="imagen">[[#{personal.rutaImagen}]]</label>
+                                                <label for="imagen">Imagen</label>
                                                 <input class="form-control" type="file" id="imagen" name="imagenFile" onchange="readURL(this);"/>
                                                 <img id="blah" src="#" alt="Imagen del Personal" height="200"/>
                                             </div>

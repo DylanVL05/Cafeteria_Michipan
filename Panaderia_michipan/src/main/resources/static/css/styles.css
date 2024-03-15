@@ -3753,6 +3753,7 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
+  border-radius: 50px;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -3804,6 +3805,7 @@ textarea.form-control-lg {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   color: var(--bs-navbar-color);
+ 
 }
 .navbar-text a,
 .navbar-text a:hover,

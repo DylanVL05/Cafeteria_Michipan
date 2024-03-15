@@ -16,14 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
                 <link th:href ="@{/css/styles.css}" rel="stylesheet" />   
 
-
                 </head>
-
-
-
-
-
-
 
                 <body>
 
@@ -83,22 +76,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div class="modal-dialog modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header bg-info text-white">
-                                        <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
+                                        <h5 class="modal-title">Agregar Categoria</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div> 
                                     <form th:action="@{/guardarCategoria}" th:object="${categoria}" method="POST" class="was-validated" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="nombre">[[#{categoria.nombre}]]</label>
+                                                <label for="nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="nombre" name="nombre" required="true"/>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="descripcion">[[#{categoria.descripcion}]]</label>
+                                                <label for="descripcion">Descripcion</label>
                                                 <input type="text" class="form-control" id="rol" name="rol" required="true"/>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="rutaImagen">[[#{categoria.rutaImagen}]]</label>
+                                                <label for="rutaImagen">Imagen</label>
                                                 <input class="form-control" type="file" id="imagen" name="imagenFile" onchange="readURL(this);"/>
                                                 <img id="blah" src="#" alt="Imagen del Categoria" height="200"/>
                                             </div>
