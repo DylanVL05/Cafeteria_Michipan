@@ -11027,3 +11027,92 @@ p {
 .address strong {
   font-size: 1.2rem;
 }
+
+
+.login{
+    width: 50%;
+    margin: 100px auto;
+    background-color: rgba(255, 243, 205, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+     color: black;
+}
+
+form {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #c0392b; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a93226;
+}
+
+.Registro {
+    width: 50%;
+    margin: 100px auto;
+    background-color: rgba(255, 243, 205, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+form {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #c0392b; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a93226; 
+}
