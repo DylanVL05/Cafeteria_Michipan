@@ -11032,10 +11032,10 @@ p {
 .login{
     width: 50%;
     margin: 100px auto;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    background-color: rgba(255, 243, 205, 0.7); 
     padding: 20px;
     border-radius: 10px;
-     color: white;
+     color: black;
 }
 
 form {
@@ -11076,7 +11076,7 @@ button:hover {
 .Registro {
     width: 50%;
     margin: 100px auto;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    background-color: rgba(255, 243, 205, 0.7); 
     padding: 20px;
     border-radius: 10px;
 }
