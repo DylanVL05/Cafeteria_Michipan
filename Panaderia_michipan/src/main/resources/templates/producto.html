@@ -90,7 +90,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                                         <div class="mb-3">
                                             <label for="categoria">Categoria</label>
-                                            <select class="form-select" name="categoriaId">                       
+                                            <select class="form-select" name="idCategoria">                       
                                                 <option th:each="c : ${categorias}" 
                                                         th:value="${c.idCategoria}"
                                                         th:text="${c.nombre}"> 
@@ -126,7 +126,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             </div>
                                             <div class="mb-3">
                                                 <label for="imagen">Imagen</label>
-                                                <input class="form-control" type="file" id="imagen" name="imagenFile" onchange="readURL(this);"/>
+                                                <input class="form-control" type="file" id="rutaImagen" name="imagenFile" onchange="readURL(this);"/>
                                                 <img id="blah" src="#" alt="Imagen del Producto" height="200"/>
                                             </div>
                                         </div>

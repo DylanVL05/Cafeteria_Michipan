@@ -72,7 +72,7 @@ public String editar(@PathVariable Long idProducto, Model model) {
 @PostMapping("/guardarProducto")
 public String guardar(@ModelAttribute("producto") Producto producto,
                       @RequestParam("imagenFile") MultipartFile imagenFile,
-                      @RequestParam("categoriaId") Long categoriaId) {
+                      @RequestParam("idCategoria") Long categoriaId) {
     
     if (categoriaId != null) {
         
@@ -95,6 +95,7 @@ public String guardar(@ModelAttribute("producto") Producto producto,
 
  
     if (!imagenFile.isEmpty()) {
+     //   producto.setIdProducto(categoriaId);
         String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto());
         producto.setRutaImagen(ruta);
     }

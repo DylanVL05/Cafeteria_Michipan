@@ -26,4 +26,7 @@ public class Producto implements Serializable {
     @JoinColumn(name = "idCategoria", insertable = false, updatable = false)
     private Categoria categoria;
 
+    
+    
+    
 }
