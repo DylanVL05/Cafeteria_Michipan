@@ -23,7 +23,7 @@ public class CategoriaController {
 
     @GetMapping({"/categoria"})
     public String listarCategorias(Model modelo) {
-        modelo.addAttribute("categoria", servicio.getAllCategorias());
+        modelo.addAttribute("categoria", servicio.getCategorias());
         return "categoria";
 
     }

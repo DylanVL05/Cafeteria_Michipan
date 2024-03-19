@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+
+      >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+                <link th:href ="@{/css/styles.css}" rel="stylesheet" />   
+
+
+                </head>
+
+
+
+
+
+
+
+                <body>
+
+
+
+
+                    <header class="header">
+                        <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                            <span class="site-heading-upper text-primary mb-3">Michipan</span>
+                            <span class="site-heading-lower">Cafetería y Restaurante</span>
+                        </h1>
+
+                        <a href="https://www.instagram.com/your_instagram_username" target="_blank" rel="noopener noreferrer" style="text-align: right; display: block;">
+                            <img src="assets/img/michi_insta.png" alt="" style="width: 45px; height: 45px; display: inline-block;">
+                                <p style="font-size: 14px; color: white; display: inline-block; margin-left: 5px; margin-bottom: 0;">@Michi.Sistemas</p>
+                        </a>
+
+                        <a href="https://www.instagram.com/your_instagram_username" target="_blank" rel="noopener noreferrer" style="text-align: right; display: block;">
+                            <img src="assets/img/facebook_michi.png" alt="" style="width: 40px; height: 40px; display: inline-block;"/>
+                            <p style="font-size: 10px; color: white; display: inline-block; margin-left: 5px; margin-bottom: 0;">@Michi.Sistemas</p>
+                        </a>
+
+                        <h5 style="color: white; background-color: black; padding: 3px;">Bienvenido a nuestra cafetería y restaurante "Michi Sistemas" | WhatsApp: 7010-4897</h5>
+                    </header>
+
+
+
+
+
+                    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+                        <div class="container">
+                            <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mx-auto">
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.html">Inicio</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">Nosotros</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="menu.html">Menu</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products.html">Producto</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="granos">Granos</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="personal">Personal</a></li>         
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="compra.html">Ordenar</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="ubicacion.html">Ubicación</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="categoria">Categorias</a></li>
+                                    <li class="nav-item dropdown">
+                                        <div class="dropdown">
+                                            <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                User
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a class="dropdown-item" href="Login.html">Login</a></li>
+                                                <li><a class="dropdown-item" href="Registro.html">Register</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <section>
+                        <div class="container">
+                            <div class="row">
+                                <h1 style="color: #f8f9fa">Editar Producto</h1>
+                            </div>
+                            <form th:action="@{/actualizarProducto}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+                                <!-- Campo oculto para el ID del producto -->
+                                <input type="hidden" th:field="*{idProducto}" />
+                                <div class="mb-3">
+                                    <label for="descripcion">Descripción</label>
+                                    <input type="text" class="form-control" id="descripcion" name="descripcion" th:value="*{descripcion}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="detalle">Detalle</label>
+                                    <input type="text" class="form-control" id="detalle" name="detalle" th:value="*{detalle}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio">Precio</label>
+                                    <input type="number" step="0.01" class="form-control" id="precio" name="precio" th:value="*{precio}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="existencias">Existencias</label>
+                                    <input type="number" class="form-control" id="existencias" name="existencias" th:value="*{existencias}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rutaImagen">Imagen</label>
+                                    <input class="form-control" type="file" id="rutaImagen" name="imagenFile" onchange="readURL(this);" />
+                                    <img id="blah" src="#" alt="Imagen del Producto" height="200" th:if="${producto != null and producto.rutaImagen != null}"
+                                         th:src="@{${producto.rutaImagen}}" style="max-width: 100px; max-height: 100px;" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                                <a th:href="@{/producto}" class="btn btn-danger">Atrás</a>
+                            </form>
+                        </div>
+                    </section>
+
+
+                    <footer class="footer text-faded text-center py-5">
+                        <div class="container"><p class="m-0 small">Copyright &copy; Michipan2024</p></div>
+                    </footer>
+
+
+
+
+
+
+
+                </body>
+
+
+
+
+
+
+
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+                <!-- Core theme JS-->
+                <script src="js/scripts.js"></script>
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script src="@{/webjars/popper.js/umd/popper.js}"></script>
+                <script src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+
+                </html>
+
+
+
+
+

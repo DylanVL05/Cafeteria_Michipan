@@ -18,8 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProductoController {
-    
-    
+
     @Autowired
     private CategoriaService categoriaService;
 
@@ -29,13 +28,14 @@ public class ProductoController {
     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
-  @GetMapping("/producto")
+    @GetMapping("/producto")
     public String listarProductos(Model model) {
-        model.addAttribute("productos", productoService.getAllProductos());
-        model.addAttribute("categorias", categoriaService.getAllCategorias());
+        var lista = productoService.getProductos();
+        model.addAttribute("productos", lista);
+        var listaCategorias = categoriaService.getCategorias();
+        model.addAttribute("categorias", listaCategorias);
         return "producto";
     }
-
 
     @GetMapping("/eliminarProducto/{idProducto}")
     public String eliminar(@PathVariable Long idProducto) {
@@ -46,76 +46,65 @@ public class ProductoController {
     @GetMapping("/editarProducto/{idProducto}")
     public String editar(@PathVariable Long idProducto, Model model) {
         Producto producto = productoService.getProductoById(idProducto);
+        
         model.addAttribute("producto", producto);
+        var listaCategorias = categoriaService.getCategorias();
+        model.addAttribute("categorias", listaCategorias);
+        
+        
+        
         return "editarProducto";
     }
-    
-    /*
-    @GetMapping("/editarProducto/{idProducto}")
-public String editar(@PathVariable Long idProducto, Model model) {
-    // Obtener el producto por ID
-    Producto producto = productoService.getProductoById(idProducto);
-    
-    // Obtener la categoría del producto
-    Categoria categoria = producto.getCategoria();                       Este metodo es para cuando se obtenga vista de edicion 
-    
-    // Agregar el producto y la categoría al modelo
-    model.addAttribute("producto", producto);
-    model.addAttribute("categoria", categoria);
-    
-    return "editarProducto";
-}
-    
-    */
-    
 
-@PostMapping("/guardarProducto")
-public String guardar(@ModelAttribute("producto") Producto producto,
-                      @RequestParam("imagenFile") MultipartFile imagenFile,
-                      @RequestParam("idCategoria") Long categoriaId) {
     
-    if (categoriaId != null) {
-        
-        Categoria categoria = categoriaService.getCategoriaById(categoriaId);
+ @PostMapping("/actualizarProducto")
+    public String actualizar(@ModelAttribute("producto") Producto producto,
+                             @RequestParam("imagenFile") MultipartFile imagenFile) {
+        if (!imagenFile.isEmpty()) { // Se debe subir una imagen
+            // Obtener el producto existente por ID
+            Producto productoExistente = productoService.getProductoById(producto.getIdProducto());
+            
+            // Actualizar los campos del producto existente con los valores del formulario
+            productoExistente.setDescripcion(producto.getDescripcion());
+            productoExistente.setDetalle(producto.getDetalle());
+            productoExistente.setPrecio(producto.getPrecio());
+            productoExistente.setExistencias(producto.getExistencias());
+            
+            // Guardar la entidad actualizada en la base de datos
+            productoService.saveProducto(productoExistente);
 
-       
-        if (categoria != null) {
-         
-            producto.setCategoria(categoria);
-        } else {
-        
-            throw new CategoriaNotFoundException("La categoría con ID " + categoriaId + " no existe");
+            // Obtener la ruta de la imagen después de guardar el producto
+            String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", productoExistente.getIdProducto());
+            productoExistente.setRutaImagen(ruta);
+
+            // Imprimir el valor de la propiedad 'imagen' antes de guardar en la base de datos
+            System.out.println("Valor de 'imagen' antes de guardar: " + productoExistente.getRutaImagen());
+
+            // Actualizar la entidad en la base de datos con la ruta de la imagen
+            productoService.saveProducto(productoExistente);
         }
-    } else {
-       
-      
+
+        return "redirect:/producto";
+    }
      
-        throw new IllegalArgumentException("El ID de categoría no puede ser nulo");
+@PostMapping("/guardarProducto")
+public String guardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile) {
+    if (!imagenFile.isEmpty()) { // A file must be uploaded
+        // First, save the product to obtain the new idProducto
+        productoService.saveProducto(producto);
+
+        // Upload the image and get the path
+        String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto());
+        
+        // Set the image path for the product
+        producto.setRutaImagen(ruta);
+        
+        System.out.println("Valor de 'imagen' antes de guardar: " + producto.getImagen());
+        
+        
+        productoService.saveProducto(producto);
     }
 
- 
-    if (!imagenFile.isEmpty()) {
-     //   producto.setIdProducto(categoriaId);
-        String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto());
-        producto.setRutaImagen(ruta);
-    }
-    productoService.saveProducto(producto);
     return "redirect:/producto";
 }
-
-public class CategoriaNotFoundException extends RuntimeException {
-    public CategoriaNotFoundException(String message) {
-        super(message);
-    }
-}
-
-
-
-
-
-
-
-
-
-
 }

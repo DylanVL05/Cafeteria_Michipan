@@ -27,6 +27,8 @@ public class Producto implements Serializable {
     private Categoria categoria;
 
     
-    
+     public String getImagen() {
+        return rutaImagen;
+    }
     
 }

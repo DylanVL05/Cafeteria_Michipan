@@ -15,7 +15,7 @@ public interface ProductoService {
     /*
     Se define la firma del metodo que recupera la lista de objetos tipo producto de la tabla Producto
      */
-    List<Producto> getAllProductos();
+    List<Producto> getProductos();
 
     Producto getProductoById(Long idProducto);
 

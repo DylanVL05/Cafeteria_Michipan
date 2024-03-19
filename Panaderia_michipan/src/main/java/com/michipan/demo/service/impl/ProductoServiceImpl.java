@@ -24,7 +24,7 @@ public class ProductoServiceImpl implements ProductoService{
     private ProductoDao productoDAO;
 
     @Override
-    public List<Producto> getAllProductos() {
+    public List<Producto> getProductos() {
         return productoDAO.findAll();
     }
 
@@ -34,10 +34,18 @@ public class ProductoServiceImpl implements ProductoService{
         return optionalProducto.orElse(null);
     }
 
-    @Override
-    public void saveProducto(Producto producto) {
-        productoDAO.save(producto);
+@Override
+public void saveProducto(Producto producto) {
+    // Guardar el producto en la base de datos
+    productoDAO.save(producto);
+
+    // Verificar si se asignó un ID al producto
+    if (producto.getIdProducto() != null) {
+        System.out.println("Producto guardado con ID: " + producto.getIdProducto());
+    } else {
+        System.out.println("¡El producto no tiene un ID asignado después de guardarse!");
     }
+}
 
     @Override
     public void deleteProducto(Long idProducto) {
