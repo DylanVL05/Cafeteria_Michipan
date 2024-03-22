@@ -88,33 +88,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <section>
                         <div class="container">
                             <div class="row">
-                                <h1 style="color: #f8f9fa">Editar Categoría</h1>
+                                <h1 style="color: #f8f9fa">Editar Producto</h1>
                             </div>
-                            <form th:action="@{/actualizarCategoria}" th:object="${categoria}" method="POST" class="was-validated" enctype="multipart/form-data">
-                                <div class="mb-3">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required="true" />
-                                </div>
+                            <form th:action="@{/actualizarProducto}" th:object="${producto}" method="POST" class="was-validated" enctype="multipart/form-data">
+                                <!-- Campo oculto para el ID del producto -->
+                                <input type="hidden" th:field="*{idProducto}" />
                                 <div class="mb-3">
                                     <label for="descripcion">Descripción</label>
-                                    <input type="text" class="form-control" id="descripcion" name="descripcion" th:field="*{descripcion}" required="true" />
+                                    <input type="text" class="form-control" id="descripcion" name="descripcion" th:value="*{descripcion}" required="true" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="imagen">Imagen</label>
-                                    <input class="form-control" type="file" id="imagen" name="imagenFile" onchange="readURL(this);" />
-                                    <img id="blah" src="#" alt="Imagen de la Categoría" height="200" th:if="${categoria != null and categoria.rutaImagen != null}"
-                                         th:src="@{${categoria.rutaImagen}}" style="max-width: 100px; max-height: 100px;" />
+                                    <label for="detalle">Detalle</label>
+                                    <input type="text" class="form-control" id="detalle" name="detalle" th:value="*{detalle}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio">Precio</label>
+                                    <input type="number" step="0.01" class="form-control" id="precio" name="precio" th:value="*{precio}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="existencias">Existencias</label>
+                                    <input type="number" class="form-control" id="existencias" name="existencias" th:value="*{existencias}" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rutaImagen">Imagen</label>
+                                    <input class="form-control" type="file" id="rutaImagen" name="imagenFile" onchange="readURL(this);" />
+                                    <img id="blah" src="#" alt="Imagen del Producto" height="200" th:if="${producto != null and producto.rutaImagen != null}"
+                                         th:src="@{${producto.rutaImagen}}" style="max-width: 100px; max-height: 100px;" />
                                 </div>
                                 <button type="submit" class="btn btn-primary">Actualizar</button>
-                                <td>
-                                    <a th:href="@{/categoria}" class="btn btn-danger">
-                                        atras
-                                    </a>
-                                </td>
+                                <a th:href="@{/producto}" class="btn btn-danger">Atrás</a>
                             </form>
                         </div>
                     </section>
-
 
 
                     <footer class="footer text-faded text-center py-5">

@@ -12,7 +12,7 @@ import java.util.List;
  * @author andro
  */
 public interface CategoriaService {
-    List<Categoria> getAllCategorias();
+    List<Categoria> getCategorias();
 
     Categoria getCategoriaById(Long idCategoria);
 

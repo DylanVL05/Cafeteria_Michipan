@@ -60,13 +60,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="granos">Granos</a></li>
                                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="personal">Personal</a></li>         
                                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="compra">Ordenar</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="compra.html">Ordenar</a></li>
                                     <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="ubicacion.html">Ubicación</a></li>
+                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="categoria">Categorias</a></li>
+                                    <li class="nav-item dropdown">
+                                        <div class="dropdown">
+                                            <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                User
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li><a class="dropdown-item" href="Login.html">Login</a></li>
+                                                <li><a class="dropdown-item" href="Registro.html">Register</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
-
                     <section>
                         <div id="agregarProducto" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-md">
@@ -79,10 +90,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                                         <div class="mb-3">
                                             <label for="categoria">Categoria</label>
-                                            <select class="form-select" name="categoria.idCategoria">                       
-                                                <option th:each="c:${categorias}" 
-                                                        th:value="${c.idCategoria}"></option>
-
+                                            <select class="form-select" name="idCategoria">                       
+                                                <option th:each="c : ${categorias}" 
+                                                        th:value="${c.idCategoria}"
+                                                        th:text="${c.nombre}"> 
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="modal-body">
@@ -113,8 +125,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="imagen">Imagen</label>
-                                                <input class="form-control" type="file" id="imagen" name="imagenFile" onchange="readURL(this);"/>
+                                                <label for="rutaImagen">Imagen</label>
+                                                <input class="form-control" type="file" id="rutaImagen" name="imagenFile" onchange="readURL(this);"/>
                                                 <img id="blah" src="#" alt="Imagen del Producto" height="200"/>
                                             </div>
                                         </div>

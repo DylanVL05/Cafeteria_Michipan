@@ -3738,7 +3738,7 @@ textarea.form-control-lg {
   --bs-navbar-brand-font-size: 1.25rem;
   --bs-navbar-brand-color: rgba(0, 0, 0, 0.9);
   --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9);
- /* --bs-navbar-nav-link-padding-x: 0.5rem;      Era para separar los elementos del nav pero se estaba pasando hacia la derecha todo*/
+ /* --bs-navbar-nav-link-padding-x: 0.5rem; */
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
   --bs-navbar-toggler-font-size: 1.25rem;
@@ -3753,7 +3753,6 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
-  border-radius: 50px;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -3805,7 +3804,6 @@ textarea.form-control-lg {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   color: var(--bs-navbar-color);
- 
 }
 .navbar-text a,
 .navbar-text a:hover,
@@ -11028,4 +11026,93 @@ p {
 
 .address strong {
   font-size: 1.2rem;
+}
+
+
+.login{
+    width: 50%;
+    margin: 100px auto;
+    background-color: rgba(255, 243, 205, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+     color: black;
+}
+
+form {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #c0392b; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a93226;
+}
+
+.Registro {
+    width: 50%;
+    margin: 100px auto;
+    background-color: rgba(255, 243, 205, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+form {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #c0392b; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a93226; 
 }

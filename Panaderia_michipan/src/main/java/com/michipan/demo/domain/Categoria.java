@@ -59,11 +59,4 @@ public class Categoria implements Serializable {
 
 
 
-/* 
-create table techshop.categoria (
-  id_categoria INT NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(30) NOT NULL,
-  ruta_imagen varchar(1024),
-  activo bool,
-  PRIMARY KEY (id_categoria))
-*/
+

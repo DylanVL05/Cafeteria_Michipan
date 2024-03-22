@@ -25,7 +25,7 @@ public class Personal implements Serializable {
     private String frase;
     private String imagen;
 
-    // Constructor por defecto (puedes personalizar según necesidades)
+  
     public Personal() {
     }
 

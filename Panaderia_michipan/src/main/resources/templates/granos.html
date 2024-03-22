@@ -15,25 +15,37 @@
 
 
 
-                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
                             <div class="container">
-                                <a class="navbar-brand" href="index.html">Regresar</a>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-3">   
-                                        <button 
-                                            type="button" 
-                                            class="btn btn-primary btn-block" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#agregarGrano">
-                                            <i class="fas fa-plus"></i> Agregar Grano
-                                        </button>
-                                    </div>
+                                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mx-auto">
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.html">Inicio</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">Nosotros</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="menu.html">Menu</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products.html">Producto</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="granos">Granos</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="personal">Personal</a></li>         
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="compra.html">Ordenar</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="ubicacion.html">Ubicación</a></li>
+                                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="categoria">Categorias</a></li>
+                                        <li class="nav-item dropdown">
+                                            <div class="dropdown">
+                                                <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    User
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                    <li><a class="dropdown-item" href="Login.html">Login</a></li>
+                                                    <li><a class="dropdown-item" href="Registro.html">Register</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </nav>
-
 
                         <section>
                             <div id="agregarGrano" 
@@ -81,6 +93,13 @@
 
 
                         <section>
+                            <button 
+                                type="button" 
+                                class="btn btn-primary btn-block" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#agregarGrano">
+                                <i class="fas fa-plus"></i> Agregar Grano
+                            </button>
                             <div class="container">
                                 <div class="row">
                                     <h1 style="color: #f8f9fa">Lista Granos</h1>
