@@ -50,7 +50,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="granos">Granos</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="personal">Personal</a></li>         
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="compra.html">Ordenar</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ordenar">Ordenar</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="ubicacion.html">Ubicación</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="categoria">Categorias</a></li>
                         <li class="nav-item dropdown">
@@ -68,59 +68,46 @@
                 </div>
             </div>
         </nav>
+        
+        
+         <section th:fragment="listadoProductos">
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active"href="/Ordenar">Todos</a>
+                    </li>
+                    <li class="nav-item" th:each="c:${categoria}">
+                        <a class="nav-link" th:href="@{/Ordenar/listado/}+${c.idCategoria}">[[${c.descripcion}]]</a>
+                    </li>
+                </ul>
 
-        <section>
+            </div>
+            <div class="row row-cols-3 p-4"> 
 
+                <div class="card p-2" th:each="p:${productos}" style="background-color: #b88645">
+                    <figure>
+                        <img th:src="${p.rutaImagen}" 
+                             height="200"             
+                             alt="alt"
+                             />
+                        <figcaption>
 
-            <section th:fragment="listadoProductos">
-                <div>
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active"href="/producto">Lista Productos</a>
-                        </li>
-                        <li class="nav-item" href="categorias">
-                            <a class="nav-link" href="/categoria"></a>
-                        </li>
-                    </ul>
+                            ¢[[${p.precio}]] ([[${p.existencias}]])
 
-                </div>
-                <div class="row row-cols-4 p-4"> 
+                        </figcaption>
+                    </figure>
 
-                    <div class="card p-2" th:each="p:${productos}">
-                        <figure>
-                            <img href:src="${p.rutaImagen}" 
-                                 height="200"             
-                                 alt="alt"
-                                 />
-                            <figcaption>
-
-                              
-
-                            </figcaption>
-                        </figure>
-
-                        <div class="card-header">
-                            <h4></h4>
-                        </div>
-                        <div class="card-body">
-                            <p></p>
-                        </div>
-
-
-
+                    <div class="card-header">
+                        <h4>[[${p.descripcion}]]</h4>
                     </div>
-
-                </div>  
-            </section>
-
-
-
-
-
-
-
-
+                    <div class="card-body">
+                        <p>[[${p.detalle}]]</p>
+                    </div>
+                </div>             
+            </div>  
         </section>
+
+
 
         <footer class="footer text-faded text-center py-5">
             <div class="container"><p class="m-0 small">Copyright &copy; Michipan2024</p></div>
