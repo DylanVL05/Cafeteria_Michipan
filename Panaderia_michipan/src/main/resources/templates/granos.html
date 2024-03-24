@@ -56,21 +56,21 @@
                                 <div class="modal-dialog modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header bg-info text-white">
-                                            <h5 class="modal-title">[[#{grano.agregar}]]</h5>
+                                            <h5 class="modal-title">Agregar Grano</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div> 
                                         <form th:action="@{/guardarGrano}" th:object="${grano}" method="POST" class="was-validated" enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="nombreGrano">[[#{grano.nombre}]]</label>
+                                                    <label for="nombreGrano">Nombre del Grano</label>
                                                     <input type="text" class="form-control" id="nombreGrano" name="nombreGrano" required="true"/>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="descripcion">[[#{grano.descripcion}]]</label>
+                                                    <label for="descripcion">Descripcion</label>
                                                     <input type="text" class="form-control" id="descripcion" name="descripcion" required="true"/>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="imagen">[[#{grano.rutaImagen}]]</label>
+                                                    <label for="imagen">Imagen</label>
                                                     <input class="form-control" type="file" id="imagen" name="imagenFile" onchange="readURL(this);"/>
                                                     <img id="blah" src="#" alt="Imagen del Grano" height="200"/>
                                                 </div>
