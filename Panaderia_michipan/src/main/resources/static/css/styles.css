@@ -104,6 +104,18 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.icono-compra i{
+    
+    font-size: 25px; 
+    
+}
+
+.boton-compra{
+    
+    width: 200px;
+    
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
