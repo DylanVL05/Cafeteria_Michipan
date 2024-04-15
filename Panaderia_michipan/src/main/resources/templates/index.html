@@ -3,18 +3,17 @@
 <html>
 
     <head>
-        <meta charset="utf-8" />
+          <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Michipan</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-SmHMDPQ8F1JpDEkNDFO4RRwnzLPDqJ3bQItx/z9UW2tHIu19jeWvHNl9a2jzN/ES" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body class="bg_index">
@@ -38,34 +37,54 @@
         </header>
 
         <!-- Navigation-->
-        <nav>
-            <div class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+         <nav>
+            <div class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" >
                 <ul class="navbar-nav mx-auto">
+                    
+                   
+                             <ul class="navbar-nav " sec:authorize="!isAuthenticated()">
+                            <li class="nav-item text-white my-auto">
+                                <a class="nav-link" th:href="@{/login}">
+                                    <i class="fas fa-sign-in-alt" style="font-size: 30px;"></i>
+                                </a>
+                            </li>
+                           
+                        </ul>
 
+                    <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')" style="margin-left: 200px">
 
-                    <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')">
-                        <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">Inicio</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">Nosotros</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="menu.html">Menu</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="producto">Producto</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="granos">Granos</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="personal">Personal</a></li>         
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros">nosotros</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="prueba">Menu</a></li>     
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="ubicacion.html">Ubicación</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ordenar">Ordenar</a></li>    
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ubicacion">Ubicación</a></li>
+
+                        <li class="nav-item dropdown px-lg-4" sec:authorize="hasRole('ADMIN')">
+                            <a class="nav-link dropdown-toggle" 
+                               data-bs-toggle="dropdown" 
+                               href="#" 
+                               role="button" 
+                               aria-expanded="false" style="color: white">Admin</a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="producto">producto</a></li>
+                                <li><a class="dropdown-item" href="categoria">categoria</a></li>
+                                <li><a class="dropdown-item" href="personal">personal</a></li>
+                                <li><a class="dropdown-item" href="granos">granos</a></li>
+
+                            </ul>
+                        </li>
                     </ul>
 
+                </ul>
 
-                </ul>   
-
-
-
-                <ul class="navbar-nav" sec:authorize="isAuthenticated()" style="margin-right: 300px" >
+                <ul class="navbar-nav" sec:authorize="isAuthenticated()" style="margin-right: 100px" >
 
                     <li class="nav-item text-white my-auto">
                         <img th:src="@{${session.usuarioImagen}}" height="40" alt="alt" class="rounded-circle"/>
-                        <span sec:authentication="name"></span>    
+                        <span sec:authentication="name"></span>  
                     </li>                       
+
                     <li class="nav-item text-white my-auto">
 
                         <form method="post" th:action="@{/logout}">
@@ -76,27 +95,7 @@
                         </form>
                     </li>
                 </ul>
-
-
-
-
             </div>
-            <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link dropdown-toggle" 
-                   data-bs-toggle="dropdown" 
-                   href="#" 
-                   role="button" 
-                   aria-expanded="false" style="color: white">Admin</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="producto">producto</a></li>
-                    <li><a class="dropdown-item" href="categoria">categoria</a></li>
-                    <li><a class="dropdown-item" href="personal">personal</a></li>
-                    <li><a class="dropdown-item" href="granos">granos</a></li>
-
-                </ul>
-            </li>
-
-
         </nav>
         <section>
 
@@ -112,7 +111,7 @@
                         <img class="d-block w-100" src="assets/img/intro.jpg" alt="First slide">
                         <div class="carousel-caption d-none d-md-block">
                             <h4>Bienvenida</h4>
-                            <p>¡Bienvenidos a MichiPan!
+                            <p style="margin-bottom: 300px">¡Bienvenidos a MichiPan!
                                 Nos complace enormemente darles la más cálida bienvenida a nuestro hogar del café, donde cada taza está llena de pasión y cada momento está impregnado de hospitalidad.
                                 Desde el momento en que cruzan nuestras puertas, se sumergirán en una atmósfera que celebra la alegría de compartir 
                                 buenos momentos en torno a una buena taza de café. Ya sea que estén aquí para una pausa rápida, una reunión con amigos o simplemente para disfrutar de un momento de tranquilidad, nos esforzamos por hacer de cada visita una experiencia especial y gratificante.</p>
@@ -123,7 +122,7 @@
                         <img class="d-block w-100" src="assets/img/cheesecake-fresas.jpg" alt="Second slide">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Postres</h5>
-                            <p>En MichiPan, no solo somos apasionados por el café, sino también por los dulces momentos que compartimos 
+                            <p style="margin-bottom: 300px">En MichiPan, no solo somos apasionados por el café, sino también por los dulces momentos que compartimos 
                                 alrededor de una buena mesa. Nuestra selección de postres está cuidadosamente elaborada para deleitar tu paladar y satisfacer tus antojos más dulces.</p>
                         </div>
                     </div>
@@ -131,7 +130,7 @@
                         <img class="d-block w-100" src="assets/img/cafe.jpg" alt="Third slide">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Calidad</h5>
-                            <p>Cada taza de café que servimos está cuidadosamente preparada por nuestros expertos baristas, quienes dominan el arte de la preparación del café para asegurarse de que cada sorbo sea una experiencia sensorial única. Ya sea un espresso perfectamente extraído, 
+                            <p style="margin-bottom: 300px">Cada taza de café que servimos está cuidadosamente preparada por nuestros expertos baristas, quienes dominan el arte de la preparación del café para asegurarse de que cada sorbo sea una experiencia sensorial única. Ya sea un espresso perfectamente extraído, 
                                 un cappuccino con una capa de espuma sedosa o un café de filtro meticulosamente preparado, te garantizamos un sabor y aroma incomparables en cada taza.</p>
                         </div>
                     </div>
@@ -176,13 +175,9 @@
         </footer>
 
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="@{/webjars/popper.js/umd/popper.js}"></script>
-        <script src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
     </body>
 </html>

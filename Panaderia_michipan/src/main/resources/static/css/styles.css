@@ -1,15 +1,6 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Business Casual v7.0.9 (https://startbootstrap.com/theme/business-casual)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -110,9 +101,25 @@ body {
     
 }
 
+
+
 .boton-compra{
     
     width: 200px;
+    
+}
+
+
+.icono-login i{
+    
+    font-size: 25px; 
+    
+}
+
+.boton-login{
+    
+    
+    height: 200px;
     
 }
 
@@ -3740,7 +3747,7 @@ textarea.form-control-lg {
 
 .navbar {
   --bs-navbar-padding-x: 0;
-  --bs-navbar-padding-y: 0.5rem;
+  --bs-navbar-padding-y: 0.5;
   --bs-navbar-color: rgba(0, 0, 0, 0.55);
   --bs-navbar-hover-color: rgba(0, 0, 0, 0.7);
   --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);
@@ -5394,6 +5401,15 @@ textarea.form-control-lg {
 .modal-footer > * {
   margin: calc(var(--bs-modal-footer-gap) * 0.5);
 }
+
+.user-box {
+            display: inline-block;
+            padding: 20px 50px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            
+        }
 
 @media (min-width: 576px) {
   .modal {
