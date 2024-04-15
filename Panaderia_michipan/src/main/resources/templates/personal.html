@@ -54,56 +54,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
                    <nav>
-                        <div class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
-                            <ul class="navbar-nav mx-auto">
+                    <nav>
+            <div class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" >
+                <ul class="navbar-nav mx-auto">
 
+                    <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')" style="margin-left: 200px">
 
-                                <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')">
-                                    <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">Inicio</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">Nosotros</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="menu.html">Menu</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="producto">Producto</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="granos">Granos</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="personal">Personal</a></li>         
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
-                                    <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="ubicacion.html">Ubicación</a></li>
-                                </ul>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">Inicio</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros">Nosotros</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Menu">Menu</a></li>     
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ordenar">Ordenar</a></li>    
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ubicacion">Ubicación</a></li>
 
-
-                            </ul>   
-
-
-
-                            <ul class="navbar-nav" sec:authorize="isAuthenticated()" style="margin-right: 100px" >
-
-                                <li class="nav-item text-white my-auto">
-                                    <img th:src="@{${session.usuarioImagen}}" height="40" alt="alt" class="rounded-circle"/>
-                                    <span sec:authentication="name"></span>    
-                                </li>                       
-                                <li class="nav-item text-white my-auto">
-
-                                    <form method="post" th:action="@{/logout}">
-                                        <button class="btn btn-success" style="margin-left: 5px">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                        </button>
-
-                                    </form>
-                                </li>
-                            </ul>
-
-                            <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
-                                <li class="nav-item text-white my-auto">
-                                    <a class="nav-link" href="/login">
-                                        <i class="fas fa-sign-in-alt ">LOGIN</i>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-
-                        </div>
-                        <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                        <li class="nav-item dropdown px-lg-4" sec:authorize="hasRole('ADMIN')">
                             <a class="nav-link dropdown-toggle" 
                                data-bs-toggle="dropdown" 
                                href="#" 
@@ -117,10 +81,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                             </ul>
                         </li>
+                    </ul>
 
+                </ul>   
+                <ul class="navbar-nav" sec:authorize="isAuthenticated()" style="margin-right: 100px" >
 
-                    </nav>
+                    <li class="nav-item text-white my-auto">
+                        <img th:src="@{${session.usuarioImagen}}" height="40" alt="alt" class="rounded-circle"/>
+                        <span sec:authentication="name"></span>  
+                    </li>                       
 
+                    <li class="nav-item text-white my-auto">
+
+                        <form method="post" th:action="@{/logout}">
+                            <button class="btn btn-success" style="margin-left: 5px">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
                     <section>
                         <div id="agregarPersonal" 
