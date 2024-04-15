@@ -1,6 +1,8 @@
 
-<html >
+<html>
     <head>
+
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -40,49 +42,52 @@
             <h5 style="color: white; background-color: black; padding: 3px;">Bienvenido a nuestra cafetería y restaurante "Michi Sistemas" | WhatsApp: 7010-4897</h5>
         </header>
 
-  <div class="row m-5 justify-content-md-center">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header text-white" style="background-color: #996600">
-                            <h2>Login</h2>
-                        </div>
-                        <div class="card-body" style="background-color: #cc9900"> 
-                            <form method="post" th:action="@{/login}">
-                                <div class="row my-3 form-group">
-                                    <label class="col-md-5" for="username">
-                                        <i class="fas fa-user-lock"></i>Username</label>
+    <div class="row m-5 justify-content-md-center"> 
 
-                                    <div class="col-md-7">
-                                        <input class="form-control" type="text" name="username"/>
-                                    </div>
+                        <div class="col-md-4">
+
+                            <div class="card">
+                                <div class="card-header bg-dark text-white text-center">
+                                    <h2>Login</h2>
                                 </div>
+                                <div class="card-body">  
+                                    <form method="post" th:action="@{/login}">
+                                        <div class="row my-3 form-group">
+                                            <label class="col-md-5" for="username">
+                                                <i class="fas fa-user-look"></i>   username</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" 
+                                                       type="text"
+                                                       name="username"/> <br/>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3 form-group">
+                                            <label class="col-md-5" for="password">
+                                                <i class="fas fa-key"></i>   password</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" 
+                                                       type="password"
+                                                       name="password"/> <br/>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer col text-center"> 
+                                            <button class="btn btn-primary" th:href="@{/registro/nuevo}">
+                                                <i class="fas fa-user-plus"></i> registrar
+                                            </button>
 
-                                <div class="row my-3 form-group">
-                                    <label class="col-md-5" for="password">
-                                        <i class="fas fa-key"></i>Password</label>
+                                            <button class="btn btn-info" th:href="@{/registro/recordar}">
+                                                <i class="fas fa-envelope"></i> recordar
+                                            </button>
 
-                                    <div class="col-md-7">
-                                        <input class="form-control" type="password" name="password"/>
-                                    </div>
+                                            <button class="btn btn-success" type="submit">
+                                                <i class="fas fa-sign-in-alt"></i> login
+                                            </button>
+                                        </div> 
+                                    </form>
                                 </div>
-                                <div class="card-footer col text-center">                          
-                                    <button class="btn btn-danger">
-                                        <a
-                                            th:href="@{/registro/nuevo}"
-                                            class="btn"><i class="fas fa-user-plus"></i>Registrar</a></button>
-                                    <button class="btn btn-info" >
-                                        <a th:href="@{/registro/recordar}" class="btn"><i class="fas fa-envelope"></i>Recuperar Usuario</a></button>
-                                    <button class="btn btn-success" type="submit">
-                                        <span class="btn"><i class=" fas fa-sign-in-alt"></i>
-                                           login</span></button>
-                                </div>                 
+                            </div>
                         </div>
-
-
-                        </form>
                     </div>
-                </div>
-            </div>
 
 
         <footer class="footer text-faded text-center py-5">
@@ -96,6 +101,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>
+
 
 
 
