@@ -5,7 +5,6 @@
 package com.michipan.demo;
 
 
-import java.util.Locale;
 
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -30,81 +28,79 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
  *
  * @author andro
  */
-
-
 @Configuration
-public class ProjectConfig implements WebMvcConfigurer{
-    
-    
+public class ProjectConfig implements WebMvcConfigurer {
+
     @Bean
     public SessionLocaleResolver localeResolver() {
-        
+
         var slr = new SessionLocaleResolver();
         slr.setDefaultLocale(Locale.getDefault());
         slr.setLocaleAttributeName("session.current.locale");
         slr.setTimeZoneAttributeName("session.current.timezone");
         return slr;
-        
-        
-        
+
     }
-    
-    public LocaleChangeInterceptor localeChangeInterceptor(){
-        
-        var lci= new LocaleChangeInterceptor();
+
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+
+        var lci = new LocaleChangeInterceptor();
         lci.setParamName("lang");
         return lci;
-        
-        
+
     }
-    
-  
+
     @Override
- public void addInterceptors(InterceptorRegistry registro){
+    public void addInterceptors(InterceptorRegistry registro) {
         registro.addInterceptor(localeChangeInterceptor());
-        
-        
+
     }
-    
- @Override
- public void addViewControllers(ViewControllerRegistry registro){
-     registro.addViewController("/").setViewName("index.html");
-      registro.addViewController("/index.html").setViewName("index.html");
-      registro.addViewController("/login").setViewName("login");
-      registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
-     
- }
-         
-         @Bean
-         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { 
-             
-             http.authorizeHttpRequests((request) -> request
-                     .requestMatchers("/","/index.html","js/**","/webjars/**" , "css/**" , "img/**")
-                     .permitAll()
-                     .requestMatchers("/categoria","/producto")
-                     .hasRole("VENDEDOR")
-                     
-                     .requestMatchers("/**")// Permite acceso a todas las URLs
-                     .hasRole("ADMIN")
-             )             
-                     
-                     
-                     .formLogin((form) -> form.loginPage("/login").permitAll())
-                     .logout((logout) -> logout.permitAll());
-                     return http.build();
-         }
- 
-         
-         @Autowired
-         private UserDetailsService userDetailsService;
-         
-         @Autowired
-         public void configurerGlobal(AuthenticationManagerBuilder builder) 
-                 throws Exception {
-         builder.userDetailsService(userDetailsService)
-                 .passwordEncoder(new BCryptPasswordEncoder());
-         }
-         
-         
-    
+
+    @Bean
+    public UserDetailsService user() {
+        UserDetails admin = User.builder().username("juan").password("{noop}123").roles("ADMIN").build();//Con esto creamos un usario y definimos sus caracteristicas
+        UserDetails vendedor = User.builder().username("rebeca").password("{noop}456").roles("USER", "VENDEDOR").build();//Con esto creamos un usario y definimos sus caracteristicas
+        UserDetails usuario = User.builder().username("pedro").password("{noop}789").roles("USER").build();//Con esto creamos un usario y definimos sus caracteristicas
+        return new InMemoryUserDetailsManager(admin, vendedor, usuario);
+
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registro) {
+        registro.addViewController("/").setViewName("index.html");
+        registro.addViewController("/index").setViewName("index");
+        registro.addViewController("/login").setViewName("login");
+        registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
+
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.authorizeHttpRequests((request) -> request
+
+
+                .requestMatchers("/","/templates", "/index", "/js/**", "/webjars/**","/css/**","/assets/**","/assets/img/**","/login/**,/registro/**")
+
+                .permitAll()
+                .requestMatchers("/categoria", "/producto")
+                .hasRole("VENDEDOR")
+                .requestMatchers("/**","/css/**","/templates","/js/**","/webjars/**")// Permite acceso a todas las URLs
+                .hasRole("ADMIN")
+        )
+                .formLogin((form) -> form.loginPage("/login").permitAll())
+                .logout((logout) -> logout.permitAll());
+        return http.build();
+    }
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder builder)
+            throws Exception {
+        builder.userDetailsService(userDetailsService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
+
 }
