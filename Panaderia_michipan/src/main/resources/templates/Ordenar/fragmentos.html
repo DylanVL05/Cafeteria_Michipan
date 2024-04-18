@@ -94,17 +94,19 @@
         </nav>
 
         <section th:fragment="listadoProductos">
-            <div>
-                <ul class="nav nav-tabs d-flex justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active bg-gradient m-3"href="/Ordenar">Todos</a>
-                    </li>
-                    <li class="nav-item" th:each="c:${categorias}">
-                        <a class="nav-link" th:href="@{/Ordenar/fragmentos/}+${c.idCategoria}">[[${c.descripcion}]]</a>
-                    </li>
-                </ul>
 
-            </div>
+    
+       
+            <div class="dropdown  d-flex justify-content-center ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Todos
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item " th:each="c:${categorias}" th:text="${c.nombre}" th:value="${c.idCategoria}" href="#"></a></li>
+                   
+                </ul>
+                
+            </div>            
 
             <div class="row row-cols-4 p-3 d-flex justify-content-center"> 
                 <div class="card p-4 m-2" th:each="p:${productos}" style="background-color: #b88645">
@@ -119,6 +121,7 @@
 
                         </figcaption>
                     </figure>
+
 
                     <div class="card-header">
                         <h4>[[${p.descripcion}]]</h4>
