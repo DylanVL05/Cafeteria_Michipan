@@ -70,7 +70,10 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addViewController("/").setViewName("index.html");
         registro.addViewController("/index").setViewName("index");
         registro.addViewController("/login").setViewName("login");
-        registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
+        registro.addViewController("/registro").setViewName("/registro");
+        registro.addViewController("/contacto").setViewName("contacto");
+         registro.addViewController("/Ubicacion").setViewName("Ubicacion.html");
+
 
     }
 
@@ -78,15 +81,15 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests((request) -> request
-
-
                 .requestMatchers("/","/templates", "/index", "/js/**", "/webjars/**","/css/**","/assets/**","/assets/img/**","/registro/**")
-
                 .permitAll()
                 .requestMatchers("/categoria", "/producto")
                 .hasRole("VENDEDOR")
                 .requestMatchers("/**","/css/**","/templates","/js/**","/webjars/**")// Permite acceso a todas las URLs
                 .hasRole("ADMIN")
+                .requestMatchers("/","/templates", "/index", "/js/**", "/webjars/**","/css/**",
+                        "/assets/**","/assets/img/**","/Ordenar/listado","/Ordenar/**","/nosotros","/contacto","/Ubicacion","/Menu","/registro/**")
+                .hasRole("USER")
         )
                 .formLogin((form) -> form.loginPage("/login").permitAll())
                 .logout((logout) -> logout.permitAll());
