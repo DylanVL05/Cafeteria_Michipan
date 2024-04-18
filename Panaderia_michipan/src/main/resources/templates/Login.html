@@ -1,5 +1,7 @@
-
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
 
 
@@ -9,14 +11,12 @@
         <meta name="author" content="" />
         <title>Michipan</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-SmHMDPQ8F1JpDEkNDFO4RRwnzLPDqJ3bQItx/z9UW2tHIu19jeWvHNl9a2jzN/ES" crossorigin="anonymous">
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body class="bg_index">
@@ -42,8 +42,7 @@
             <h5 style="color: white; background-color: black; padding: 3px;">Bienvenido a nuestra cafetería y restaurante "Michi Sistemas" | WhatsApp: 7010-4897</h5>
         </header>
 
-
-                    <div class="row m-5 justify-content-md-center"> 
+    <div class="row m-5 justify-content-md-center"> 
 
                         <div class="col-md-4">
 
@@ -71,19 +70,17 @@
                                                        name="password"/> <br/>
                                             </div>
                                         </div>
-                                        <div class="card-footer col text-center"> 
-                                            <button class="btn btn-primary" th:href="@{/registro/nuevo}">
-                                                <i class="fas fa-user-plus"></i> registrar
-                                            </button>
-
-                                            <button class="btn btn-info" th:href="@{/registro/recordar}">
-                                                <i class="fas fa-envelope"></i> recordar
-                                            </button>
-
-                                            <button class="btn btn-success" type="submit">
-                                                <i class="fas fa-sign-in-alt"></i> login
-                                            </button>
-                                        </div> 
+                                <div class="card-footer col text-center">                          
+                                    <button class="btn btn-primary">
+                                        <a
+                                            th:href="@{/registro/nuevo}"
+                                            class="btn"><i class="fas fa-user-plus"></i> REGISTRAR</a></button>
+                                    <button class="btn btn-info" >
+                                        <a th:href="@{/registro/recordar}" class="btn"><i class="fas fa-envelope"></i> RECORDAR</a></button>
+                                    <button class="btn btn-success" type="submit">
+                                        <span class="btn"><i class=" fas fa-sign-in-alt"></i>
+                                            LOGIN</span></button>
+                                </div>    
                                     </form>
                                 </div>
                             </div>
@@ -97,11 +94,9 @@
 
         <!-- Bootstrap core JS-->
         <!-- Core theme JS-->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>
+
 
 
 
