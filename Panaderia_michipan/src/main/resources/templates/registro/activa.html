@@ -4,13 +4,47 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html>
-    <head th:replace="~{Ordenar/fragmentos :: head}">
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <section th:replace="~{registro/fragmentos :: activarUsuario}" class="row py-2 justify-content-center"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Michipan</title>
 
-    </body>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <link th:href ="@{/css/styles.css}" rel="stylesheet" />   
+
+    <!-- Google fonts-->
+
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+
+</head>
+<body class="bg_index">
+    <header class="header">
+        <h1 class="site-heading text-center text-faded d-none d-lg-block">
+            <span class="site-heading-upper text-primary mb-3">Michipan</span>
+            <span class="site-heading-lower">Cafetería y Restaurante</span>
+        </h1>
+
+
+
+
+
+
+        <h5 style="color: white; background-color: black; padding: 3px;">Bienvenido a nuestra cafetería y restaurante "Michi Sistemas" | WhatsApp: 7010-4897</h5>
+    </header>
+
+    <section th:replace="~{registro/fragmentos :: activarUsuario}" class="row py-2 justify-content-center"/>
+
+
+    <footer class="footer text-faded text-center py-5">
+        <div class="container"><p class="m-0 small">Copyright &copy; Michipan2024</p></div>
+    </footer>
+
+</body>
 </html>
