@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head th:replace="~{layout/plantilla :: head}">
-        <title>TechShop</title>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head>
+
+        <title>MichiPan</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+            <link th:href ="@{/css/styles.css}" rel="stylesheet" />   
+
     </head>
     <body>
+
         <!-- 1 Fragmento que se utiliza en la página para regresar -->
         <section th:fragment="nuevoUsuario">
             <div class="row py-2 justify-content-center">
                 <div class="col-md-3">
                     <section>
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/login}" class="btn btn-primary">
+                            <a th:href="@{/login}" class="btn btn-success">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
                     </section>
                 </div>
             </div>
-            <div class="row py-2 justify-content-center">
+            <div class="row py-2 justify-content-center ">
                 <div class="col-md-3">
                     <form method="POST" th:action="@{/registro/crearUsuario}" th:object="${usuario}" class="was-validated">
-                        <div class="card">
-                            <div class="card-header">
+                        <div class="card border border-dark">
+                            <div class="card-header bg-dark text-white text-center">
                                 <h4>[[#{usuario.agregar}]]</h4>
                             </div>
                             <div class="card-body">
@@ -42,7 +52,7 @@
                                     <input type="email" class="form-control" 
                                            name="correo" th:field="*{correo}"
                                            required="true"/></div></div>
-                            <div class="card-footer text-end">                                                
+                            <div class="card-footer text-center border-top border-dark ">                                                
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-envelope"></i> [[#{usuario.activacion}]]
                                 </button></div>
@@ -130,7 +140,7 @@
                             </div>
                             <div class="card-footer text-end">                                                
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-address-card"></i> [[#{registro.recordar.us}]]
+                                   <i class="fas fa-address-card"></i> [[#{registro.recordar.us}]]
                                 </button>
                             </div>
                         </div>
