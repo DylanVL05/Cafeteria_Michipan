@@ -7,14 +7,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <link th:href ="@{/css/styles.css}" rel="stylesheet" />   
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet"/>
+        <script th:src="@{/js/rutinas.js}"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>     
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <title>Michipan</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+
+
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link href="css/styles.css" rel="stylesheet" />
+
+
 
     </head>
     <body class="bg_index">
@@ -54,12 +74,11 @@
 
                     <ul class="navbar-nav" sec:authorize="hasRole('USER') or hasRole('VENDEDOR')" style="margin-left: 200px">
 
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">Inicio</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros">nosotros</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Menu">Menu</a></li>     
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ordenar">Ordenar</a></li>    
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ubicacion">Ubicación</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">INICIO</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros">NOSOTROS</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ventas2">ORDENAR</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Menu">MENU</a></li>     
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ubicacion">UBICACION</a></li>
 
                         <li class="nav-item dropdown px-lg-4" sec:authorize="hasRole('ADMIN')">
                             <a class="nav-link dropdown-toggle" 
@@ -68,9 +87,8 @@
                                role="button" 
                                aria-expanded="false" style="color: white">Admin</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="producto">producto</a></li>
-                                <li><a class="dropdown-item" href="categoria">categoria</a></li>
-                                <li><a class="dropdown-item" href="personal">personal</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>    
+                                <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>    
                                 <li><a class="dropdown-item" href="granos">granos</a></li>
 
                             </ul>
@@ -121,7 +139,7 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="assets/img/cheesecake-fresas.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="assets/img/products-01.jpg" alt="Second slide">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Postres</h5>
                             <p style="margin-bottom: 300px">En MichiPan, no solo somos apasionados por el café, sino también por los dulces momentos que compartimos 
@@ -157,7 +175,9 @@
             <div class="container"><p class="m-0 small">Copyright &copy; Michipan2024</p></div>
         </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+
 </html>

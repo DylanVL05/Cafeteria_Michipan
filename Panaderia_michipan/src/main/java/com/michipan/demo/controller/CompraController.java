@@ -5,8 +5,10 @@
 package com.michipan.demo.controller;
 
 
+import com.michipan.demo.domain.Item;
 import com.michipan.demo.service.CategoriaService;
 import com.michipan.demo.service.FirebaseStorageService;
+import com.michipan.demo.service.ItemService;
 import com.michipan.demo.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,22 +23,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CompraController {
     
+   @Autowired
+   private ItemService itemservice;
     @Autowired
-    private CategoriaService categoriaService;
-
-    @Autowired
-    private ProductoService productoService;
+    private ProductoService productoservice;
 
     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
-    @GetMapping("/Ordenar")
-    public String listarProductos(Model model) {
-        var lista = productoService.getProductos();
+ @GetMapping("/Ventas2")
+    public String listado(Model model) {
+
+        var lista = productoservice.getProductos(false);
+
         model.addAttribute("productos", lista);
-        var listaCategorias = categoriaService.getCategorias();
-        model.addAttribute("categorias", listaCategorias);
-        return "Ordenar/fragmentos";
+
+        return "/Ventas2";
     }
     
 

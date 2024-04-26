@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body class="bg_index">
-        <header>
+     <body class="bg_index">
+        <header class="header">
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
                 <span class="site-heading-upper text-primary mb-3">Michipan</span>
                 <span class="site-heading-lower">Cafetería y Restaurante</span>
@@ -26,28 +26,36 @@
                 <p style="font-size: 14px; color: white; display: inline-block; margin-left: 5px; margin-bottom: 0;">@Michi.Sistemas</p>
             </a>
 
-
             <a href="https://www.instagram.com/your_instagram_username" target="_blank" rel="noopener noreferrer" style="text-align: right; display: block;">
                 <img src="assets/img/facebook_michi.png" alt="" style="width: 40px; height: 40px; display: inline-block;"/>
                 <p style="font-size: 10px; color: white; display: inline-block; margin-left: 5px; margin-bottom: 0;">@Michi.Sistemas</p>
             </a>
 
-            <h5 style="color: white; background-color: black; padding: 3px;">Bienvenido a nuestra cafetería y restaurante "Michi Sistemas" | WhatsApp: 7010-4897</h5>
-
+            <h5 style="color: white; background-color: black; padding: 3px; border-radius: 10px">Bienvenido a nuestra cafetería y restaurante "Michi Sistemas" | WhatsApp: 7010-4897</h5>
         </header>
+
         <!-- Navigation-->
-        <nav>
+         <nav>
             <div class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" >
                 <ul class="navbar-nav mx-auto">
 
-                    <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')" style="margin-left: 200px">
 
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">Inicio</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros">Nosotros</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Menu">Menu</a></li>     
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contacto">Contactenos</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ordenar">Ordenar</a></li>    
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ubicacion">Ubicación</a></li>
+                    <ul class="navbar-nav " sec:authorize="!isAuthenticated()">
+                        <li class="nav-item text-white my-auto">
+                            <a class="nav-link" th:href="@{/login}">
+                                <i class="fas fa-sign-in-alt" style="font-size: 30px;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav" sec:authorize="hasRole('USER') or hasRole('VENDEDOR')" style="margin-left: 200px">
+
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">INICIO</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="nosotros">NOSOTROS</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ventas2">ORDENAR</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Menu">MENU</a></li>     
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="Ubicacion">UBICACION</a></li>
 
                         <li class="nav-item dropdown px-lg-4" sec:authorize="hasRole('ADMIN')">
                             <a class="nav-link dropdown-toggle" 
@@ -56,16 +64,17 @@
                                role="button" 
                                aria-expanded="false" style="color: white">Admin</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="producto">producto</a></li>
-                                <li><a class="dropdown-item" href="categoria">categoria</a></li>
-                                <li><a class="dropdown-item" href="personal">personal</a></li>
+                                <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>    
+                                <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>    
                                 <li><a class="dropdown-item" href="granos">granos</a></li>
 
                             </ul>
                         </li>
+
                     </ul>
 
-                </ul>   
+                </ul>
+
                 <ul class="navbar-nav" sec:authorize="isAuthenticated()" style="margin-right: 100px" >
 
                     <li class="nav-item text-white my-auto">
