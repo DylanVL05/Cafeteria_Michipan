@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+            <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+            <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet"/>
+            <script th:src="@{/js/rutinas.js}"></script>
+            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+            <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 
+            <title>TechShop</title>
+    </head>
+    <body>
+        <!-- 1 Sección para ver el listado de productos en bonito en cuadros-->
+
+        <section th:fragment="listadoProductos" >
+
+            <div class="row row-cols-3 p-2">
+                <h2 class="text-white">[[#{index.nuestrosProductos}]]</h2>
+                <div id="resultsBlock">
+
+                </div>
+            </div>
+            <div class="row row-cols-3 p-2" > 
+
+                <div class="card p-3" th:each="p:${productos}" style="background-color: lightsalmon">
+                    <figure >
+                        <img th:src="${p.rutaImagen}" 
+                             height="200"             
+                             alt="alt"
+                             />
+                        <figcaption>
+
+                            ¢[[${p.precio}]] ([[${p.existencias}]])
+
+                        </figcaption>
+                    </figure>
+                    <form> 
+                        <input type="hidden" 
+                               name="idProducto" 
+                               th:value="${p.idProducto}"/>
+
+                        <button class="btn btn-success" id="addCardButton" type="button" onclick="addCard(this.form)">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+
+                    </form>
+
+                    <div class="card-header">
+                        <h4>[[${p.descripcion}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>[[${p.detalle}]]</p>
+                    </div>
+                </div>             
+            </div> 
+
+
+        </section>     
+
+        <!-- Presenta el carrito de compras -->
+        <section th:fragment="verCarrito" class="m-2">
+            <form action="/carrito/listado">
+                <button class="btn btn-primary">
+                    <i class="fas fa-cart-plus"></i>[[#{carrito.verCarrito}]]  [[${listaTotal}]] [[${carritoTotal}]]
+                </button>
+            </form>
+        </section>
+        
+        <!-- listadoCarrito -->
+        <section th:fragment="listadoCarrito" id="items">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{carrito.titulo}]]</h4>
+                            </div>
+                            <div th:if="${items != null and !items.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr><th>#</th>
+                                            <th>[[#{producto.descripcion}]]</th>
+                                            <th>[[#{producto.precio}]]</th>
+                                            <th>[[#{carrito.cantidad}]]</th>
+                                            <th>[[#{producto.total}]]</th>
+                                            <th>[[#{producto.categoria}]]</th>
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="item : ${items}">
+                                            <td>[[${item.idProducto}]]</td>
+                                            <td>[[${item.descripcion}]]</td>
+                                            <td style="text-aling: center">[[${item.Precio}]]</td>
+                                            <td style="text-aling: center">[[${item.cantidad}]]</td>
+                                            <td style="text-aling: center">[[${item.precio*item.cantidad}]]</td>
+                                            <td>
+                                                <a th:href="@{/carrito/eliminar/}+${item.idProducto}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/carrito/modificar/}+${item.idProducto}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></tr></td>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                            <div class="text-center p-2" th:if="${items == null or items.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{carrito.totalCompra}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${CarritoTotal}]]</h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-center bg-primary text-white mb-3">
+                            <div class="card-body">
+                                <a th:href="@{/Ventas2}" 
+                                   class="btn btn-primary">
+                                    <i class='fas fa-reply'></i> [[#{carrito.seguirComprando}]]
+                                </a>
+                            </div>
+                        </div> 
+
+                        <div class="card text-center bg-info text-white mb-3">
+                            <div class="card-body">
+                                <a th:href="@{/facturar/carrito}" 
+                                   class="btn btn-info">
+                                    <i class='fas fa-forward'></i> [[#{carrito.facturar}]]
+                                </a>
+                            </div>
+                        </div> 
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section th:fragment="editarItem" >
+            <div class="row row-cols-6 m-2">
+                <a class="btn btn-primary"
+                   th:href="@{/carrito/listado}">
+                    <i class="fas fa-reply"></i> [[#{accion.regresar}]]
+                </a>
+            </div>
+            <div class="row row-cols-2 p-4"><!-- divide la pagina en dos columnas -->
+                <div class="card p-3">
+                    <div class="card-header"></div>
+                    [[#{carrito.datos}]]
+                    <div class="body">
+                        <h5 class="card-title">[[${item.descripcion}]]</h5>
+                        <h6 class="card-subtitle text-end">¢[[${item.precio}]] ([[${item.existencias}]])</h6><!-- el $ llama una variable -->
+                        <p class="card-text">[[${item.detalle}]]</p>
+
+                    </div>
+                </div>
+
+                <div class="card p-3">
+                    <figure>
+
+                        <img th:src="@{${item.rutaImagen}}" 
+                             width="200"
+                             height="height"
+                             alt="alt"/>
+
+                    </figure>
+                    <form th:action="@{/carrito/guardar/}"
+                          method="post"
+                          th:object="${item}">
+
+                        <input type="hidden" 
+                               name="idProducto"
+                               th:field="*{idProducto}" />
+
+                        <div class="form-group">
+                            <label for="cantidad">
+                                [[#{carrito.cantidad}]]
+                                <input type="number" 
+                                       name="cantidad"
+                                       th:field="*{cantidad}" 
+                                       min="1" th:max="${item.existencias}"/><!-- para que no se pueda comprar mas cantidad de las que hay -->
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fas fa-save"></i>[[#{accion.guardar}]]
+
+                                </button>
+
+                            </label>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+        </section>
+
+    </body>
+</html>

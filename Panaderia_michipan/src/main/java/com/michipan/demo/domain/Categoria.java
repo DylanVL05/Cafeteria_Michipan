@@ -12,47 +12,23 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "categoria")
-public class Categoria implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@Table (name="categoria")
+public class Categoria implements  Serializable{
+    private static final long serialVersionUID=1L;
+   
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCategoria") // Ajusta este nombre según el nombre real de tu columna
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//La base de datos genera autmaticamente el IdCategoria
+    @Column(name="id_categoria")
     private Long idCategoria;
-
-    @Column(name = "nombre") // Ajusta este nombre según el nombre real de tu columna
-    private String nombre;
-
-    @Column(name = "descripcion") // Ajusta este nombre según el nombre real de tu columna
+    
     private String descripcion;
-
-    @Column(name = "rutaImagen") // Ajusta este nombre según el nombre real de tu columna
     private String rutaImagen;
-
-    // Otros campos y métodos de la entidad
-
-    public Categoria() {
-    }
+    private boolean activo;
     
-    
-        @OneToMany
-    @JoinColumn(name="idCategoria",updatable = false)
+    @OneToMany
+    @JoinColumn(name="id_categoria",updatable = false)
     private List<Producto> productos;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+ }
 
     
     

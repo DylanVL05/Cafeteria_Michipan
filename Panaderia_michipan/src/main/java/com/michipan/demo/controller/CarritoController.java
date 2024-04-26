@@ -4,6 +4,7 @@ import com.michipan.demo.domain.Item;
 import com.michipan.demo.domain.Producto;
 import com.michipan.demo.service.ItemService;
 import com.michipan.demo.service.ProductoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,7 +74,7 @@ public class CarritoController {
        return "/carrito/modifica";
    }
    
-      @PostMapping("/carrito/guardar")
+      @PostMapping("/carrito/guardar/")
    public String guardar(Item item, Model model){
        itemservice.update(item);
        
@@ -84,7 +85,7 @@ public class CarritoController {
    public String facturar(){
        itemservice.facturar();
        
-       return "redirect:/";
+       return "redirect:/Ventas2";
    }
    
    

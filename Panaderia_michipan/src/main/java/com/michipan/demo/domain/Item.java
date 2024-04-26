@@ -25,6 +25,7 @@ public class Item extends Producto{
         super.setDetalle(p.getDetalle());
         super.setPrecio(p.getPrecio());
         super.setExistencias(p.getExistencias());
+        super.setActivo(p.isActivo());
         super.setRutaImagen(p.getRutaImagen());
         this.cantidad=0;
     }

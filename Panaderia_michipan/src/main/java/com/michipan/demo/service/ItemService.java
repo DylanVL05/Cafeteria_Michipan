@@ -5,10 +5,14 @@
 package com.michipan.demo.service;
 
 import com.michipan.demo.domain.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ *
+ * @author EstivenQ
+ */
 public interface ItemService {
 
     List<Item> listaItems = new ArrayList<>();

@@ -17,94 +17,59 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@RequestMapping("/producto")
 public class ProductoController {
 
     @Autowired
+    private ProductoService productoService;
+    @Autowired
     private CategoriaService categoriaService;
 
-    @Autowired
-    private ProductoService productoService;
+    @GetMapping("/listado")
+    public String listado(Model model) {
+
+        var lista = productoService.getProductos(false);
+
+        model.addAttribute("productos", lista);
+
+        model.addAttribute("totalProductos", lista.size());
+
+        //aqui se trae la informacion para mostrar las categoria en la lista de productos
+        var categorias = categoriaService.getCategorias(true);
+
+        model.addAttribute("categorias", categorias);
+
+        return "/producto/listado";
+    }
 
     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
-    @GetMapping("/producto")
-    public String listarProductos(Model model) {
-        var lista = productoService.getProductos();
-        model.addAttribute("productos", lista);
-        var listaCategorias = categoriaService.getCategorias();
-        model.addAttribute("categorias", listaCategorias);
-        return "producto";
-    }
+    @PostMapping("/guardar")
+    public String guardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile) {
 
-    @GetMapping("/eliminarProducto/{idProducto}")
-    public String eliminar(@PathVariable Long idProducto) {
-        productoService.deleteProducto(idProducto);
-        return "redirect:/producto";
-    }
-
-    @GetMapping("/editarProducto/{idProducto}")
-    public String editar(@PathVariable Long idProducto, Model model) {
-        Producto producto = productoService.getProductoById(idProducto);
-        
-        model.addAttribute("producto", producto);
-        var listaCategorias = categoriaService.getCategorias();
-        model.addAttribute("categorias", listaCategorias);
-        
-        
-        
-        return "editarProducto";
-    }
-
-    
- @PostMapping("/actualizarProducto")
-    public String actualizar(@ModelAttribute("producto") Producto producto,
-                             @RequestParam("imagenFile") MultipartFile imagenFile) {
-        if (!imagenFile.isEmpty()) { // Se debe subir una imagen
-            // Obtener el producto existente por ID
-            Producto productoExistente = productoService.getProductoById(producto.getIdProducto());
-            
-            // Actualizar los campos del producto existente con los valores del formulario
-            productoExistente.setDescripcion(producto.getDescripcion());
-            productoExistente.setDetalle(producto.getDetalle());
-            productoExistente.setPrecio(producto.getPrecio());
-            productoExistente.setExistencias(producto.getExistencias());
-            
-            // Guardar la entidad actualizada en la base de datos
-            productoService.saveProducto(productoExistente);
-
-            // Obtener la ruta de la imagen después de guardar el producto
-            String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", productoExistente.getIdProducto());
-            productoExistente.setRutaImagen(ruta);
-
-            // Imprimir el valor de la propiedad 'imagen' antes de guardar en la base de datos
-            System.out.println("Valor de 'imagen' antes de guardar: " + productoExistente.getRutaImagen());
-
-            // Actualizar la entidad en la base de datos con la ruta de la imagen
-            productoService.saveProducto(productoExistente);
+        if (!imagenFile.isEmpty()) {// se debe subir una imagen
+            //Primero se guarda la producto, para obtener el id producto nuevo
+            productoService.save(producto);
+            String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto());
+            producto.setRutaImagen(ruta);
         }
-
-        return "redirect:/producto";
-    }
-     
-@PostMapping("/guardarProducto")
-public String guardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile) {
-    if (!imagenFile.isEmpty()) { // A file must be uploaded
-        // First, save the product to obtain the new idProducto
-        productoService.saveProducto(producto);
-
-        // Upload the image and get the path
-        String ruta = firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto());
-        
-        // Set the image path for the product
-        producto.setRutaImagen(ruta);
-        
-        System.out.println("Valor de 'imagen' antes de guardar: " + producto.getImagen());
-        
-        
-        productoService.saveProducto(producto);
+        productoService.save(producto);
+        return "redirect:/producto/listado";
     }
 
-    return "redirect:/producto";
-}
+    @GetMapping("/modificar/{idProducto}")
+    public String modifica(Producto producto, Model model) {
+        producto = productoService.getProducto(producto);
+        model.addAttribute("producto", producto);
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("categorias", categorias);
+        return "producto/modifica";
+    }
+
+    @GetMapping("/eliminar/{idProducto}")
+    public String elimina(@PathVariable Long idProducto) {
+        productoService.deleteProducto(idProducto);
+        return "redirect:/producto/listado";
+    }
 }
